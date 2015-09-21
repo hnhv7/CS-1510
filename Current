@@ -1,0 +1,82 @@
+// Harry Nantz
+// CompSci 1510 Section A
+// 2D Dynamic Arrays 
+
+#include <iostream>
+using namespace std;
+enum DIRECTIONS{RIGHT = 0, DOWN = 1};
+
+template <typename T>
+class Data{
+  private:
+  	Data* m_right;
+  	Data* m_down;
+  	
+  public:
+  	T m_data;
+  	Data()
+  	{
+      m_right=NULL;
+      m_down=NULL;
+    };
+    Data* getPtr(int a)
+	{
+      if (a == RIGHT)
+        a=0;
+      if (a == DOWN)
+        a=1;
+    };
+    
+    void operator=(const Data &d);
+    friend ostream &operator<< (ostream & out, const Data &d)
+    {
+      out << d.m_data;
+      return out;
+	};
+	
+	friend istream &operator>> (istream &in, Data &d)
+	{
+	  in >> d.m_data;
+	  return in;
+	};
+	
+	 
+	
+};
+
+template <typename T>
+class Matrix{
+	private:
+	  int m_sizeX;
+	  int m_sizeY;
+	
+	public:
+	setMatrix(T x, T y)
+	{
+	  m_sizeX=x;
+	  m_sizeY=y;
+	};
+	fillMatrix(T a)
+	{
+	  for (int i=0; i < m_sizeX; i++)
+		for (int j=0; i < m_sizeY; j++)
+		  
+	};
+};
+
+template <typename T>
+void Data<T>::operator=(const Data& d)
+{
+  m_data = d.m_data;
+};
+
+
+int main()
+{
+	int x,y;
+	Matrix<int> a;
+	a.setMatrix(x,y);
+	
+	
+	
+};
