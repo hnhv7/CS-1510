@@ -1,0 +1,36 @@
+int xTot=0;
+int yTot=0;
+int temp=0;
+int xCor, yCor, tot;
+	for (int i = 0; i < b; i++)
+		{ 
+		if (xTot == 0)
+		  xTot = temp;
+		if (temp < xTot)
+		 {
+		 xTot = temp;
+		 xCor = i;
+	     };   
+		 temp = 0;
+			for (int j = 0; j < a; j++)
+			{
+				temp = temp + p[i][j];
+			};
+        };
+			
+	for (int i = 0; i < a; i++)
+		{  
+		  if (yTot == 0)
+		  yTot = temp;
+		if (temp < yTot)
+		 {
+		 yTot = temp;
+		 yCor = i;
+	     };    
+		 temp = 0;
+			for (int j = 0; j < b; j++)
+			{
+				temp = temp + p[i][j];
+				
+			};
+        };
