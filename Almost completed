@@ -1,88 +1,88 @@
 
 #include <iostream>
 using namespace std;
-
+int a,b;
+int Sum(int c, int r, int** p=NULL, int i, int j);
 int main()
 {
 	int** p;
 	int c,r,t;
-	int xTot=-1;
-	int yTot=-1;
-	int temp=-1;
 	int count=-1;
-	int xCor=0, yCor=0, tot=0;
+	int xcor=0, ycor=0, tot=0;
+	int sum=0;
 	
 	cin >> t;
-	
 	for (int i=0; i<t; i++)
 	{
 	p=NULL;
 	cin >> c;		//column
 	cin >> r;
 	count++;
-		
+
 	p = new int*[r];
 	for (int i = 0; i<r; i++)
 		p[i] = new int[c];    			// Making the array
 	
 	
-	
+
 	for (int i = 0; i < r; i++)
 		{
-		
+
 			for (int j = 0; j < c; j++)
 			{
+
 				cin >> p[i][j];
 	    						// Filling the array
             }
         }
 	
 
-
-	for (int i = 0; i < r; i++)
-		{ 
-	
-		 temp = 0;
-			for (int j = 0; j < c; j++)
-			{
-				temp = temp + p[i][j];
-			};
-			if (i==0)
-			  xTot = temp;
-			if (temp < xTot)
-			{
-			 xTot = temp;
-			 yCor = i;
-	        };
-		};
+        for (int i=0; i < r; i++)
+	        for (int j=0; j < c; j++)
+			     {
+				    sum=Sum(c,r, p, i, j);
+				 if (i==0 && j==0)
+	               {
+				   tot=sum;
+				   ycor=0;
+				   xcor=0;
+			       }
+	             if (sum<tot)
+	               {
+	               	tot=sum;
+	               	ycor=i;
+	               	xcor=j;
+	               	
+				   }
+                 };
 		
-	   temp =-1;		
-	for (int i = 0; i < c; i++)
-		{  
-	 
-		 temp = 0;
-			for (int j = 0; j < r; j++)
-			{   
-				temp = temp + p[j][i];
-			};
-			  if (i == 0)
-				yTot = temp;
-			if (temp < yTot)
-			 {
-				yTot = temp;
-				xCor = i;
-	         };   
-          }; 
-		tot = yTot + xTot -p[yCor][xCor];
         
 
 
     cout << "#" << count << ":   ";
-    cout << "(" << xCor << ", " << yCor << ")  ";
+    cout << "(" << xcor << ", " << ycor << ")  ";
     cout << tot << endl;
 	for (int k=0; k<r; k++)
 		delete []p[k];
     delete []p;
 	p=NULL;    
-}
+	}
 return 0;}
+
+
+int Sum(int c, int r, int** p, int i, int j)
+{
+	int tempy=0, tempx=0, temp=0;
+	
+	for (int k = 0; k < c; k++)
+			{
+				tempy = tempy + p[i][k];
+
+			};
+	for (int k = 0; k < r; k++)
+			{
+				tempx = tempx + p[k][j];
+			};
+
+		temp=tempy + tempx-p[i][j];
+return temp;}
