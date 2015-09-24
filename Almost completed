@@ -1,3 +1,4 @@
+
 #include <iostream>
 using namespace std;
 
@@ -9,20 +10,20 @@ int main()
 	int yTot=-1;
 	int temp=-1;
 	int count=-1;
-	int xCor=0, yCor=0, tot;
+	int xCor=0, yCor=0, tot=0;
 	
 	cin >> t;
 	
 	for (int i=0; i<t; i++)
 	{
+	p=NULL;
 	cin >> c;		//column
 	cin >> r;
 	count++;
-		p = new int*[r];
+		
+	p = new int*[r];
 	for (int i = 0; i<r; i++)
 		p[i] = new int[c];    			// Making the array
-	
-	
 	
 	
 	
@@ -31,9 +32,8 @@ int main()
 		
 			for (int j = 0; j < c; j++)
 			{
-				int x;
-				cin >> x;
-				p[i][j] = x;				// Filling the array
+				cin >> p[i][j];
+	    						// Filling the array
             }
         }
 	
@@ -73,14 +73,16 @@ int main()
 				xCor = i;
 	         };   
           }; 
-		//tot = yTot + xTot -p[xCor][yCor];
+		tot = yTot + xTot -p[yCor][xCor];
         
-    for (int k=0; k<r; k++)
-        delete []p[k];
-    delete []p;
-    p=NULL;
+
+
     cout << "#" << count << ":   ";
     cout << "(" << xCor << ", " << yCor << ")  ";
-    cout << tot << endl;     
-};
-return 0;};
+    cout << tot << endl;
+	for (int k=0; k<r; k++)
+		delete []p[k];
+    delete []p;
+	p=NULL;    
+}
+return 0;}
