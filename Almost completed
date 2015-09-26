@@ -2,7 +2,7 @@
 #include <iostream>
 using namespace std;
 int a,b;
-int Sum(int c, int r, int** p=NULL, int i, int j);
+int Sum(int a, int b, int c, int r, int** p, int i, int j);
 int main()
 {
 	int** p;
@@ -40,7 +40,7 @@ int main()
         for (int i=0; i < r; i++)
 	        for (int j=0; j < c; j++)
 			     {
-				    sum=Sum(c,r, p, i, j);
+				    sum=Sum(i,j,c,r, p, i, j);
 				 if (i==0 && j==0)
 	               {
 				   tot=sum;
@@ -70,7 +70,7 @@ int main()
 return 0;}
 
 
-int Sum(int c, int r, int** p, int i, int j)
+int Sum(int a, int b, int c, int r, int** p, int i, int j)
 {
 	int tempy=0, tempx=0, temp=0;
 	
