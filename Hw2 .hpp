@@ -1,26 +1,35 @@
 
+#include <iostream>
+using namespace std;
+
 template <typename T>
-	ArrayList::~ArrayList();
+	ArrayList<T>::~ArrayList()
 	{
 	  delete m_data[];
 	  m_data=NULL;
 	} 
 
 template <typename T>
-	ArrayList::ArrayList<T>& operator=(const ArrayList<T>& rhs)
+	ArrayList<T>& ArrayList<T>::operator=(const ArrayList<T>& rhs)
 	{
-	
-	
+	  if(this != &rhs)
+	    clear();
+	    m_size=rhs.m_size;
+	    m_max=rhs.m_max;
+	    m_data= new T[m_max];
+	    for (int i = 0; i < m_size; i++)
+            m_data[i] = rhs[i];
+	  return *this;
 	}
 
 template <typename T>
-	ArrayList::ArrayList(const ArrayList<T>& cpy)
+	ArrayList<T>::ArrayList(const ArrayList<T>& cpy)
 	{
-	  
-
-	
-	  
-	  
+	   m_size = cpy.m_size;
+    m_max = cpy.m_max;
+    m_data = new T[m_max];
+    for (int i = 0; i < m_size; i++)
+        m_data[i] = cpy[i]; 
 	}
 
 /* ----- Basic Accessor Operations ----- */
@@ -32,7 +41,7 @@ template <typename T>  // Array Size
 	}
 
 template <typename T> // Array's First Element
-		const ArrayList::T& first() const
+		const T& ArrayList<T>::first() const
 		{
 		  if (m_data > 0)
 		    return m_data[0];
@@ -45,7 +54,7 @@ template <typename T> // Array's First Element
 		    
 		}
 template <typename T>
-	ArrayList::T& operator[](int i);
+	T& ArrayList<T>::operator[](int i)
 	{
 	  if (i>=0 && i<m_size)
 	    return m_data[i];
@@ -54,7 +63,7 @@ template <typename T>
 	}
 
 template <typename T>
-	const T& operator[](int i) const;
+	const T& ArrayList<T>::operator[](int i) const
 	{
 	  if (i>=0 && i<m_size)
 	    return m_data[i];
@@ -74,7 +83,7 @@ template <typename T>
 /* ----- Basic Mutator Operations -----  */
 
 template <typename T>
-	void ArrayList::clear()
+	void ArrayList<T>::clear()
 	{
 	  delete m_data[];
 	  m_data=NULL;
@@ -83,14 +92,14 @@ template <typename T>
 	}
 
 template <typename T>
-	 void ArrayList::insert_back(const T& x)
+	 void ArrayList<T>::insert_back(const T& x)
 	 {
 	   insert(x, m_size);
 		 
 	 }
 
 template <typename T>
-	void ArrayList::insert(const T& x, int i)
+	void ArrayList<T>::insert(const T& x, int i)
 	{
 	  if (i<0 || i>m_size)
 	  {
@@ -124,7 +133,7 @@ template <typename T> // Removes an element
          {
            T* tmp = new T[m_max/2];
 		   m_max=m_max/2;
-		   for int (int k=0; k<m_max; k++)	
+		   for (int k=0; k<m_max; k++)	
          	 tmp[k]=m_data[k];
            delete m_data[];
            m_data=tmp;
@@ -137,9 +146,9 @@ template <typename T> // Removes an element
 /* ----- Complex Mutator Operations ----- */
 
 template <typename T>
-	void ArrayList::swap(int i, int k)
+	void ArrayList<T>::swap(int i, int k)
 	{
-	  if i>0 && k>0 && i<m_size && k<m_size)
+	  if (i>0 && k>0 && i<m_size && k<m_size)
 	  {
 		  T s=0;
 		  s=m_data[i];
@@ -153,22 +162,17 @@ template <typename T>
 	}
 
 template <typename T>
-	void ArrayList::append(const ArrayList<T>& alist)
+	void ArrayList<T>::append(const ArrayList<T>& alist)
 	{
-	
-		
+	  for (int i=0; i<alist.m_size;i++)
+	    insert_back(alist[i]);
 	}
 
 template <typename T>
-	void ArrayList::purge()
+	void ArrayList<T>::purge()
 	{
-	
-		
-		
+	  for (int i =0; i<m_size; i++)
+		for (int j=i+1; j<m_size; j++)
+		  if (m_data[i]==m_data[j])
+		    remove(j);
 	}
-
-/* ----- Complex Accessor Operations -----  */
-
-
-template <typename T>
-	friend std::ostream& operator<< <> (std::ostream& out, const ArrayList<T>& alist);
