@@ -1,0 +1,37 @@
+#include <iostream>
+#include <string>
+#include <iomanip>
+
+#include "Package2D.h"
+#include "Package3D.h"
+#include "Package4D.h"
+using namespace std;
+
+int main()
+{
+	float p, total=0, avg=0, count=0;
+	string PLACEHOLDER="Richie"; // DELETE MEEEEEEEE!!!!!!!
+	string to, from;
+	
+	
+	
+	cin >> p;
+	
+	while ( p != 0)
+	 {
+		p--;
+		Package2D x("from","to");
+	
+	
+		cout << "#" << count << ": " << "From ";
+		cout << PLACEHOLDER << " to " << PLACEHOLDER; 
+		cout << " $" << PLACEHOLDER << endl;
+		count++;
+         }
+	
+	
+  cout.setf(ios_base::fixed,ios_base::floatfield);
+  cout.precision(2);
+  cout << endl << "TOTAL PROFIT = $" << total << endl;
+  cout << "AVERAGE = $" << avg << endl;
+}
